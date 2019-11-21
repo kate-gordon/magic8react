@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import EightBall from './components/eight-ball'; 
+import QuestionList from './components/questionList'; 
+import { StateProvider } from './context/index'; 
+
+import { ThemeProvider } from 'emotion-theming'
+import theme from '@rebass/preset'
 import './App.css';
 
 function App() {
+  const initialState = [];
+  
+  const reducer = (state, action) => { 
+    switch (action.type) {
+      case 'addQuestion':
+        return [
+          ...state,
+          action.newQ
+        ];
+        
+      default:
+        return state;
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <ThemeProvider theme={theme}>
+    <StateProvider initialState={initialState} reducer={reducer}>
+        <h1>A Magic 8Ball</h1>
+          <EightBall /> 
+          <QuestionList />
+    </StateProvider>
+    </ThemeProvider>
   );
 }
 
