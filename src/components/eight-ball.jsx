@@ -3,6 +3,7 @@ import  { StateContext } from '../context';
 import loadData from '../utils/loadData'; 
 
 import { Button, Box } from 'rebass';
+
 import { Input } from '@rebass/forms'; 
 
 function EightBall() {
@@ -43,7 +44,8 @@ function EightBall() {
 
       
     return (
-      <Box width={1/2} px={2}>
+ 
+      <Box width={1/3} px={3} bg='#24232b' p={5} color='white'>
          <form onSubmit={handleClick}>
             <Input 
             type="text" 
@@ -56,6 +58,8 @@ function EightBall() {
             <Button 
                 variant='secondary'
                 sx={{
+                  p: 4, 
+                  borderRadius: 50,
                   ':hover': {
                     backgroundColor: 'tomato',
                   }
@@ -65,6 +69,7 @@ function EightBall() {
             </Button>
         </form>
       </Box>
+   
     )
 }
 

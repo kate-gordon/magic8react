@@ -4,11 +4,18 @@ import QuestionList from './components/questionList';
 import { StateProvider } from './context/index'; 
 
 import { ThemeProvider } from 'emotion-theming'
-import theme from '@rebass/preset'
+import { Flex } from 'reflexbox'; 
+// import { Heading } from 'rebass'; 
+import theme from '@rebass/preset'; 
 import './App.css';
 
 function App() {
   const initialState = [];
+
+  const appStyle = {
+    display: 'flex', 
+    alignItems: 'center'
+  }
   
   const reducer = (state, action) => { 
     switch (action.type) {
@@ -24,12 +31,15 @@ function App() {
   };
   return (
   <ThemeProvider theme={theme}>
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <Flex alignItems='center' flexDirection='column' justifyContent='center'> 
+      <StateProvider initialState={initialState} reducer={reducer}>
         <h1>A Magic 8Ball</h1>
           <EightBall /> 
           <QuestionList />
-    </StateProvider>
-    </ThemeProvider>
+      </StateProvider>
+    </Flex> 
+  </ThemeProvider>
+ 
   );
 }
 
